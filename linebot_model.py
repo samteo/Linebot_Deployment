@@ -11,7 +11,13 @@ Created on Sun Jul  7 12:56:10 2019
 
 @author: Big data
 """  
-import numpy as np 
+import numpy as np
+from pytrends.request import TrendReq #API
+import time
+import random
+import json
+import pandas as pd
+import numpy as np
 import pandas as pd
 import xgboost as xgb
 import numpy as np
@@ -25,9 +31,9 @@ import pickle
 from sklearn.externals import joblib
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import cross_val_score
-#t={"Runtime":"101min","budget_in_USD":1400000,"Production":"aaa","imdbVotes":0.5,"IMDBscore":0.6,"TomatoesScore":0.8,"Metascore":0.5,
-#   "Theater_num":1000,"movie_2_before":50,"movie_1_before":50,"movie_0_before":50,"Actor_2_before":50,"Actor_1_before":50,
-#   "Actor_0_before":50,"Genre":"Action","Language":"English","Country":"USA","classification":"R","Released":"27 JUN 2019"}
+t={"movie_name":"herry","Runtime":"101min","budget_in_USD":1400000,"Production":"aaa","imdbVotes":0.5,"IMDBscore":0.6,"TomatoesScore":0.8,"Metascore":0.5,"actor":"johney",
+  "Theater_num":1000,"movie_2_before":50,"movie_1_before":50,"movie_0_before":50,"Actor_2_before":50,"Actor_1_before":50,
+  "Actor_0_before":50,"Genre":"Action","Language":"English","Country":"USA","classification":"R","Released":"27 Feb 2019"}
 def month(m):
     mon = {
         "Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
@@ -285,7 +291,7 @@ def model_yn(movielist):
     return clf2.predict(df_model)[0]
 
 def predict_loss(m):
-    import pymongo
+
     import pandas as pd
     import numpy as np
     import re
@@ -410,7 +416,7 @@ def predict_loss(m):
     return y_pred
 
 def predict_gain(m):
-    import pymongo
+
     import pandas as pd
     import numpy as np
     import re
@@ -547,6 +553,7 @@ def run_model(t):#主程式
        return("您會虧錢",predict_loss(t))
 if __name__ == "__main__":
     a,b=run_model(t)
+    print(a, b)
     
 
 
